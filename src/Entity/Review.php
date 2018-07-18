@@ -103,18 +103,6 @@ class Review
         return $this;
     }
 
-    public function getRelation(): ?string
-    {
-        return $this->relation;
-    }
-
-    public function setRelation(string $relation): self
-    {
-        $this->relation = $relation;
-
-        return $this;
-    }
-
     public function getBook(): ?Book
     {
         return $this->book;
