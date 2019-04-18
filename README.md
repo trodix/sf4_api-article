@@ -4,7 +4,7 @@
 - Installer les dépendances  
 `composer install`
 - Créer la base de données  
-`php bin/console doctrine:database:create`
+`php bin/console doctrine:database:create`   
 `php bin/console doctrine:migrations:migrate`
 - Lancer le serveur de développement  
 `php bin/console server:run`
