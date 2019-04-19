@@ -7,16 +7,11 @@ use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Serializer\Annotation\Groups;
-use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\BookRepository")
- * @ApiResource(attributes={
- *          "normalization_context"={"groups"={"book"}, "enable_max_depth"=true},
- *          "denormalization_context"={"groups"={"book"}, "enable_max_depth"=true},
- *          "force_eager"=false
- * })
+ * @ApiResource(normalizationContext={"groups"={"book"}})
  */
 class Book
 {
@@ -24,7 +19,7 @@ class Book
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups("book")
+     * @Groups({"book", "review"})
      * 
      */
     private $id;
@@ -32,7 +27,7 @@ class Book
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Isbn
-     * @Groups("book")
+     * @Groups({"book", "review"})
      * 
      */
     private $isbn;
@@ -40,7 +35,7 @@ class Book
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
-     * @Groups("book")
+     * @Groups({"book", "review"})
      * 
      */
     private $title;
@@ -48,7 +43,7 @@ class Book
     /**
      * @ORM\Column(type="text", nullable=true)
      * @Assert\NotBlank
-     * @Groups("book")
+     * @Groups({"book", "review"})
      * 
      */
     private $description;
@@ -56,7 +51,7 @@ class Book
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
-     * @Groups("book")
+     * @Groups({"book", "review"})
      * 
      */
     private $author;
@@ -64,7 +59,7 @@ class Book
     /**
      * @ORM\Column(type="datetime")
      * @Assert\NotNull
-     * @Groups("book")
+     * @Groups({"book", "review"})
      * 
      */
     private $publicationDate;

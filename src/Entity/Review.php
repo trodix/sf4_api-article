@@ -5,12 +5,11 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Symfony\Component\Serializer\Annotation\Groups;
-use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ReviewRepository")
- * @ApiResource
+ * @ApiResource(normalizationContext={"groups"={"review"}})
  */
 class Review
 {
@@ -18,7 +17,7 @@ class Review
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups("book")
+     * @Groups({"book", "review"})
      * 
      */
     private $id;
@@ -26,7 +25,7 @@ class Review
     /**
      * @ORM\Column(type="smallint")
      * @Assert\Range(min=0, max=5)
-     * @Groups("book")
+     * @Groups({"book", "review"})
      * 
      */
     private $rating;
@@ -34,7 +33,7 @@ class Review
     /**
      * @ORM\Column(type="text")
      * @Assert\NotBlank
-     * @Groups("book")
+     * @Groups({"book", "review"})
      * 
      */
     private $body;
@@ -42,7 +41,7 @@ class Review
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
-     * @Groups("book")
+     * @Groups({"book", "review"})
      * 
      */
     private $author;
@@ -50,7 +49,7 @@ class Review
     /**
      * @ORM\Column(type="datetime")
      * @Assert\NotNull
-     * @Groups("book")
+     * @Groups({"book", "review"})
      * 
      */
     private $publicationDate;
@@ -59,7 +58,7 @@ class Review
      * @ORM\ManyToOne(targetEntity="App\Entity\Book", inversedBy="reviews")
      * @ORM\JoinColumn(nullable=false)
      * @Assert\NotNull
-     * @Groups({"book"})
+     * @Groups("review")
      * 
      */
     private $book;
