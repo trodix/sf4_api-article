@@ -23,6 +23,7 @@ http://localhost:8000/api
 - Review `http://localhost:8000/api/reviews`
 
 ## Exemple
+### Book
 **Request URL**  
 GET `http://localhost:8000/api/books/1`
 
@@ -44,9 +45,33 @@ GET `http://localhost:8000/api/books/1`
       "rating": 5,
       "body": "my good review",
       "author": "John Doe",
-      "publicationDate": "2019-04-18T09:55:08+00:00",
-      "book": "/api/books/1"
+      "publicationDate": "2019-04-18T09:55:08+00:00"
     }
   ]
+}
+```
+### Review
+**Request URL**  
+GET `http://localhost:8000/api/reviews/1`
+
+**Code**  
+200
+
+**Response body**  
+```json
+{
+  "id": 1,
+  "rating": 5,
+  "body": "my good review",
+  "author": "John Doe",
+  "publicationDate": "2019-04-18T09:55:08+00:00",
+  "book": {
+    "id": 1,
+    "isbn": "9781234567897",
+    "title": "book1",
+    "description": "description book1",
+    "author": "Sébastien Vallet",
+    "publicationDate": "2019-04-18T09:53:12+00:00"
+  }
 }
 ```
